@@ -1,14 +1,14 @@
 # Currencies
 
+## About
+
+<!-- about content here -->
+
 ## Get started
  
 1. Install packages, eg. ```npm install```.
 2. Run *development* server with hot-reloads, eg. ```npm run serve```.
 3. **OR,** run *production* server, eg. ```npm run build```.
-
-## About
-
-<!-- about content here -->
 
 ## Reference
 
