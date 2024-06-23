@@ -2,8 +2,6 @@
 
 ## About
 
-![image](https://github.com/chronosgit/currencies/assets/126391668/18b46e34-30c8-4c9d-a0d8-56428707d39d)
-
 ## Get started
  
 1. Install packages, eg. ```npm install```.
