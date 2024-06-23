@@ -1,5 +1,5 @@
 <template>
-	<posts :posts="shownPosts"/>
+	<posts :posts="shownPosts" @like="onPostLike"/>
 
 	<pagination :pages="pages" @paginate="paginate"/>
 </template>
@@ -9,6 +9,7 @@
 	import Pagination from '@components/Pagination';
 	import getPosts from '@/api/getPosts';
 	import getPageLabels from '@/helpers/getPageLabels';
+import isObjectInLocalStorage from '@/helpers/isObjectInLocalStorage';
 
 	export default {
 		name: 'Home',
@@ -33,7 +34,21 @@
 			},
 			getNewShownPosts(page) {
 				return this.posts.slice((page - 1) * 5, page * 5);
-			}
+			},
+			onPostLike({post}) {
+				if(isObjectInLocalStorage(post)) {
+					this.dislikePost(post.id);
+					return;
+				}
+
+				this.likePost(post);
+			},
+			dislikePost(postId) {
+				localStorage.removeItem(`post_${postId}`);
+			},
+			likePost(post) {
+				localStorage.setItem(`post_${post.id}`, post);
+			},
 		},
 		mounted() {
 			getPosts()

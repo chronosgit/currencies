@@ -35,6 +35,13 @@
 				{{ this.post.descr }}
 			</p>
 		</div>
+
+		<img 
+			src=".././assets/icon-heart.jpg" 
+			alt=""
+			class="icon icon_heart"	
+			@click="onLike"
+		>
 	</div>
 </template>
 
@@ -47,6 +54,11 @@
 				required: true,
 			}
 		},
+		methods: {
+			onLike() {
+				this.$emit('like', { post: this.post })
+			},
+		}
 	};
 </script>
 
@@ -75,5 +87,10 @@
 	.icon {
 		max-width: 1.2rem;
 		height: auto;
+	}
+
+	.icon_heart {
+		align-self: flex-end;
+		cursor: pointer;
 	}
 </style>

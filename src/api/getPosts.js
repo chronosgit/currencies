@@ -1,5 +1,5 @@
 import { API_URL } from "@/globals";
-import xmlToJson from "./xmlToJson";
+import xmlToJson from "../helpers/xmlToJson";
 
 const getPosts = () => {
   return new Promise((res, rej) => {

@@ -4,7 +4,7 @@
 			class="post-wrapper" 
 			v-for="post in posts"
 		>
-			<post :post="post"/>
+			<post :post="post" @like="onPostLike"/>
 		</div>
 	</div>
 </template>
@@ -22,6 +22,11 @@
 		},
 		components: {
 			Post,
+		},
+		methods: {
+			onPostLike({post}) {
+				this.$emit('like', { post })
+			}
 		},
 	};
 </script>
