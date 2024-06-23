@@ -61,6 +61,10 @@
 		text-decoration: none;
 	}
 
+	.active_link {
+		text-decoration: underline
+	}
+
 	.github_link {
 		--max-size: 2rem;
 		max-width: var(--max-size);
