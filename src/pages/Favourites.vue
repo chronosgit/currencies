@@ -27,7 +27,6 @@
 			Posts, Pagination,
 		},
 		mounted() {
-			console.log('favs mounted');
 			const favs = getFavourites();
 			this.posts = favs;
 			this.initPosts = this.posts;

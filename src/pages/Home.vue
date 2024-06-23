@@ -46,7 +46,6 @@
 		mounted() {
 			getPosts()
 				.then(posts => {
-					console.log('home mounted');
 					this.posts = posts;
 					this.initPosts = this.posts;
 					this.shownPosts = this.getNewShownPosts(this.curPage);
