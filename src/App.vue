@@ -1,10 +1,17 @@
 <template>
+	<!-- <the-header/> -->
+
 	<router-view/>
 </template>
 
 <script>
+	import TheHeader from '@components/TheHeader';
+
 	export default {
 		name: 'App',
+		components: {
+			TheHeader,
+		},
 	};
 </script>
 
@@ -13,6 +20,10 @@
 		margin: 0;
 		padding: 0;
 		font-family: 'Poppins';
+	}
+
+	:root {
+		--color-lime: #0ee077;
 	}
 
 	img {
