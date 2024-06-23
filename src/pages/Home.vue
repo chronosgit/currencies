@@ -1,22 +1,29 @@
 <template>
 	<main>
-		<posts :posts="shownPosts" @like="onPostLike"/>
+		<posts 
+			:posts="shownPosts" 
+			@like="onPostLike"
+			@select="onSelectFilter"
+		/>
 
-		<pagination :pages="pages" @paginate="paginate"/>
+		<pagination 
+			:pages="pages" 
+			@paginate="paginate"
+		/>
 	</main>
 </template>
 
 <script>
 	import Posts from '@components/Posts';
 	import Pagination from '@components/Pagination';
-	import paginationMixin from '@/mixins/paginationMixin';
+	import postsMixin from '@/mixins/postsMixin';
 	import getPosts from '@/api/getPosts';
 	import getPageLabels from '@/helpers/getPageLabels';
 	import isObjectInLocalStorage from '@/helpers/isObjectInLocalStorage';
 
 	export default {
 		name: 'Home',
-		mixins: [paginationMixin],
+		mixins: [postsMixin],
 		components: {
 			Posts, Pagination,
 		},
@@ -39,7 +46,9 @@
 		mounted() {
 			getPosts()
 				.then(posts => {
+					console.log('home mounted');
 					this.posts = posts;
+					this.initPosts = this.posts;
 					this.shownPosts = this.getNewShownPosts(this.curPage);
 					this.pages = getPageLabels(posts.length);
 				})
