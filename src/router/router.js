@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@pages/Home';
 import NotFound from '@pages/NotFound';
-import TheLayout from '@/components/TheLayout.vue';
+import TheLayout from '@/components/TheLayout';
+import Favourites from '@pages/Favourites';
 
 const routes = [
 	{
@@ -13,6 +14,11 @@ const routes = [
 				path: '/',
 				name: 'Home',
 				component: Home,
+			},
+			{
+				path: '/favourites',
+				name: 'Favourites',
+				component: Favourites,
 			},
 		],
 	},

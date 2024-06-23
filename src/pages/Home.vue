@@ -1,40 +1,26 @@
 <template>
-	<posts :posts="shownPosts" @like="onPostLike"/>
+	<main>
+		<posts :posts="shownPosts" @like="onPostLike"/>
 
-	<pagination :pages="pages" @paginate="paginate"/>
+		<pagination :pages="pages" @paginate="paginate"/>
+	</main>
 </template>
 
 <script>
 	import Posts from '@components/Posts';
 	import Pagination from '@components/Pagination';
+	import paginationMixin from '@/mixins/paginationMixin';
 	import getPosts from '@/api/getPosts';
 	import getPageLabels from '@/helpers/getPageLabels';
-import isObjectInLocalStorage from '@/helpers/isObjectInLocalStorage';
+	import isObjectInLocalStorage from '@/helpers/isObjectInLocalStorage';
 
 	export default {
 		name: 'Home',
-		data() {
-			return {
-				posts: [],
-				shownPosts: [],
-				curPage: 1,
-				pages: null,
-			};
-		},
+		mixins: [paginationMixin],
 		components: {
 			Posts, Pagination,
 		},
 		methods: {
-			paginate({newPage}) {	
-				if(newPage === this.curPage) {
-					return;
-				}
-
-				this.curPage = newPage;
-			},
-			getNewShownPosts(page) {
-				return this.posts.slice((page - 1) * 5, page * 5);
-			},
 			onPostLike({post}) {
 				if(isObjectInLocalStorage(post)) {
 					this.dislikePost(post.id);
@@ -47,7 +33,7 @@ import isObjectInLocalStorage from '@/helpers/isObjectInLocalStorage';
 				localStorage.removeItem(`post_${postId}`);
 			},
 			likePost(post) {
-				localStorage.setItem(`post_${post.id}`, post);
+				localStorage.setItem(`post_${post.id}`, JSON.stringify(post));
 			},
 		},
 		mounted() {
@@ -61,10 +47,5 @@ import isObjectInLocalStorage from '@/helpers/isObjectInLocalStorage';
 					console.error('Error fetching posts:', error);
 				});
 		},
-		watch: {
-			curPage(newPage) {
-				this.shownPosts = this.getNewShownPosts(newPage);
-  		},
-		}
 	};
 </script>
