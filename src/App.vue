@@ -24,6 +24,7 @@
 
 	:root {
 		--color-lime: #0ee077;
+		--color-lime-dark: #0db863;
 	}
 
 	img {
