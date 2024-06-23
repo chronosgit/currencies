@@ -19,12 +19,15 @@
 	* {
 		margin: 0;
 		padding: 0;
-		font-family: 'Poppins';
+		box-sizing: border-box;
+		font-family: 'Poppins', sans-serif;
 	}
 
 	:root {
 		--color-lime: #0ee077;
 		--color-lime-dark: #0db863;
+		--color-gray: #D9D9D9;
+		--color-gray-light: #f0f0f0;
 	}
 
 	img {

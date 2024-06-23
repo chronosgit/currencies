@@ -1,12 +1,23 @@
 <template>
-	<main>Home</main>
+	<posts :posts="posts"/>
 </template>
 
 <script>
+	import Posts from '@components/Posts';
+	import mockPosts from '@/helpers/mockPosts';
+
 	export default {
 		name: 'Home',
+		data() {
+			return {
+				posts: [],
+			};
+		},
+		components: {
+			Posts
+		},
 		mounted() {
-			// TODO: fetch
-		}
+			this.posts = mockPosts;
+		},
 	};
 </script>
