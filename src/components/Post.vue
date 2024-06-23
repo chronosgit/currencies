@@ -56,7 +56,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
-		border: 1px solid var(--color-gray);
+		border: 1px solid var(--color-lime);
 		border-radius: 0.8rem;
 		overflow: hidden;
 	}

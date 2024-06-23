@@ -1,29 +1,55 @@
 <template>
-	<posts :posts="posts"/>
+	<posts :posts="shownPosts"/>
+
+	<pagination :pages="pages" @paginate="paginate"/>
 </template>
 
 <script>
 	import Posts from '@components/Posts';
+	import Pagination from '@components/Pagination';
 	import getPosts from '@/api/getPosts';
+	import getPageLabels from '@/helpers/getPageLabels';
 
 	export default {
 		name: 'Home',
 		data() {
 			return {
 				posts: [],
+				shownPosts: [],
+				curPage: 1,
+				pages: null,
 			};
 		},
 		components: {
-			Posts
+			Posts, Pagination,
+		},
+		methods: {
+			paginate({newPage}) {	
+				if(newPage === this.curPage) {
+					return;
+				}
+
+				this.curPage = newPage;
+			},
+			getNewShownPosts(page) {
+				return this.posts.slice((page - 1) * 5, page * 5);
+			}
 		},
 		mounted() {
 			getPosts()
 				.then(posts => {
 					this.posts = posts;
+					this.shownPosts = this.getNewShownPosts(this.curPage);
+					this.pages = getPageLabels(posts.length);
 				})
 				.catch(error => {
 					console.error('Error fetching posts:', error);
 				});
 		},
+		watch: {
+			curPage(newPage) {
+				this.shownPosts = this.getNewShownPosts(newPage);
+  		},
+		}
 	};
 </script>
