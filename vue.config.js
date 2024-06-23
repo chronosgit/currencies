@@ -12,4 +12,16 @@ module.exports = defineConfig({
       },
     },
   },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'https://nationalbank.kz',
+        changeOrigin: true,
+        secure: false,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
+  }
 });

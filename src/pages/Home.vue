@@ -5,6 +5,7 @@
 <script>
 	import Posts from '@components/Posts';
 	import mockPosts from '@/helpers/mockPosts';
+import getPosts from '@/api/getPosts';
 
 	export default {
 		name: 'Home',
@@ -17,6 +18,10 @@
 			Posts
 		},
 		mounted() {
+			const fetchedPosts = getPosts();
+
+			console.log(fetchedPosts);
+
 			this.posts = mockPosts;
 		},
 	};
