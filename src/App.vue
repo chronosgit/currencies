@@ -1,6 +1,4 @@
 <template>
-	<!-- <the-header/> -->
-
 	<router-view/>
 </template>
 
