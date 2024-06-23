@@ -4,8 +4,7 @@
 
 <script>
 	import Posts from '@components/Posts';
-	import mockPosts from '@/helpers/mockPosts';
-import getPosts from '@/api/getPosts';
+	import getPosts from '@/api/getPosts';
 
 	export default {
 		name: 'Home',
@@ -18,11 +17,13 @@ import getPosts from '@/api/getPosts';
 			Posts
 		},
 		mounted() {
-			const fetchedPosts = getPosts();
-
-			console.log(fetchedPosts);
-
-			this.posts = mockPosts;
+			getPosts()
+				.then(posts => {
+					this.posts = posts;
+				})
+				.catch(error => {
+					console.error('Error fetching posts:', error);
+				});
 		},
 	};
 </script>

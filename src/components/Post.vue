@@ -32,7 +32,7 @@
 			>
 
 			<p class="post_description">
-				{{ this.post.description }}
+				{{ this.post.descr }}
 			</p>
 		</div>
 	</div>
