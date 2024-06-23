@@ -13,6 +13,6 @@
 ## Reference
 
 1. [Official project configuration reference.](https://cli.vuejs.org/config/)
-2. [API reference.](https://nationalbank.kz/rss/get_rates.cfm?fdate=23.02.2009)
+2. [API reference.](https://www.nationalbank.kz/ru/page/rss)
 3. [Vue documentation.](https://vuejs.org/)
 4. [Pinia documentation](https://pinia.vuejs.org/)
