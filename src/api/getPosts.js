@@ -14,7 +14,7 @@ const getPosts = () => {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
         const jsonData = xmlToJson(xmlDoc);
-        console.log(xmlText);
+        console.log(response, xmlText, API_URL);
         res(jsonData.items);
       })
       .catch(err => {
