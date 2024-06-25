@@ -1,10 +1,10 @@
-// import { API_URL } from "@/globals";
-const API_URL = '/api/vercelFetchPosts.js';
+import { DEV_API_URL } from "@/globals";
+// const API_URL = '/api/vercelFetchPosts.js';
 import xmlToJson from "../helpers/xmlToJson";
 
 const getPosts = () => {
   return new Promise((res, rej) => {
-    fetch(API_URL)
+    fetch(DEV_API_URL)
       .then(async response => {
         if(!response.ok) {
           throw new Error(`Failed to fetch posts. Status: ${response.status}`);
