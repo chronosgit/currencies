@@ -1,21 +1,26 @@
 <template>
 	<main>
-		<posts 
-			:posts="shownPosts" 
-			@like="onPostLike"
-			@select="onSelectFilter"
-		/>
+		<loader v-if="isLoading"/>
 
-		<pagination 
-			:pages="pages" 
-			@paginate="paginate"
-		/>
+		<template v-else>
+			<posts 
+				:posts="shownPosts" 
+				@like="onPostLike"
+				@select="onSelectFilter"
+			/>
+
+			<pagination 
+				:pages="pages" 
+				@paginate="paginate"
+			/>
+		</template>
 	</main>
 </template>
 
 <script>
 	import Posts from '@components/Posts';
 	import Pagination from '@components/Pagination';
+	import Loader from '@components/Loader';
 	import postsMixin from '@/mixins/postsMixin';
 	import getPosts from '@/api/getPosts';
 	import getPageLabels from '@/helpers/getPageLabels';
@@ -25,7 +30,12 @@
 		name: 'Home',
 		mixins: [postsMixin],
 		components: {
-			Posts, Pagination,
+			Posts, Pagination, Loader
+		},
+		data() {
+			return {
+				isLoading: false,
+			};	
 		},
 		methods: {
 			onPostLike({post}) {
@@ -44,6 +54,8 @@
 			},
 		},
 		mounted() {
+			this.isLoading = true;
+
 			getPosts()
 				.then(posts => {
 					this.posts = posts;
@@ -53,6 +65,10 @@
 				})
 				.catch(error => {
 					console.error('Error fetching posts:', error);
+				})
+				.finally(() => {
+					this.isLoading = false;
+					console.log(this.posts);
 				});
 		},
 	};
