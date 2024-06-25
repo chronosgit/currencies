@@ -1,4 +1,5 @@
-import { API_URL } from "@/globals";
+// import { API_URL } from "@/globals";
+const API_URL = './vercelFetchPosts';
 import xmlToJson from "../helpers/xmlToJson";
 
 const getPosts = () => {
