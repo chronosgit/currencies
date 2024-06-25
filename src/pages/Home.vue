@@ -66,7 +66,7 @@
 					this.initPosts = this.posts;
 					this.shownPosts = this.getNewShownPosts(this.curPage);
 					this.pages = getPageLabels(posts.length);
-
+					console.log(posts);
 					this.isLoading = false;
 					this.loaderMsg = '';
 				})

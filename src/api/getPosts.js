@@ -17,8 +17,6 @@ const getPosts = () => {
         res(jsonData.items);
       })
       .catch(err => {
-        console.error(err);
-
         rej(err);
       });
   });
