@@ -1,5 +1,5 @@
 <template>
-	<div class="wrapper">
+	<div class="wrapper" v-if="posts.length > 0">
 		<div class="posts">
 			<div 
 				class="post-wrapper" 
