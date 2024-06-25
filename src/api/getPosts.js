@@ -13,7 +13,7 @@ const getPosts = () => {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlText, 'application/xml');
         const jsonData = xmlToJson(xmlDoc);
-
+        console.log(jsonData);
         res(jsonData.items);
       })
       .catch(err => {
