@@ -1,6 +1,8 @@
 <template>
 	<main>
-		<loader v-if="isLoading"/>
+		<loader v-if="isLoading">
+			{{ this.loadingMsg }}
+		</loader>
 
 		<template v-else>
 			<posts 
@@ -35,6 +37,7 @@
 		data() {
 			return {
 				isLoading: false,
+				loaderMsg: '',
 			};	
 		},
 		methods: {
@@ -55,6 +58,7 @@
 		},
 		mounted() {
 			this.isLoading = true;
+			this.loaderMsg = 'Loading...';
 
 			getPosts()
 				.then(posts => {
@@ -62,13 +66,13 @@
 					this.initPosts = this.posts;
 					this.shownPosts = this.getNewShownPosts(this.curPage);
 					this.pages = getPageLabels(posts.length);
+
+					this.isLoading = false;
+					this.loaderMsg = '';
 				})
 				.catch(error => {
+					this.loaderMsg = 'Error fetching posts';
 					console.error('Error fetching posts:', error);
-				})
-				.finally(() => {
-					this.isLoading = false;
-					console.log(this.posts);
 				});
 		},
 	};
